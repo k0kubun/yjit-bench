@@ -52,6 +52,7 @@ def get_rss
 end
 
 def get_maxrss
+  return 0
   require 'fiddle'
   require 'rbconfig/sizeof'
 
@@ -97,12 +98,12 @@ def return_results(warmup_iterations, bench_iterations)
     yjit_bench_results["yjit_stats"] = RubyVM::YJIT.runtime_stats
   end
 
-  require "json"
-  out_path = YB_OUTPUT_FILE
-  system('mkdir', '-p', File.dirname(out_path))
+  # require "json"
+  # out_path = YB_OUTPUT_FILE
+  # system('mkdir', '-p', File.dirname(out_path))
 
-  # Using default path? Print where we put it.
-  puts "Writing file #{out_path}" unless ENV["RESULT_JSON_PATH"]
+  # # Using default path? Print where we put it.
+  # puts "Writing file #{out_path}" unless ENV["RESULT_JSON_PATH"]
 
-  File.write(out_path, JSON.pretty_generate(yjit_bench_results))
+  # File.write(out_path, JSON.pretty_generate(yjit_bench_results))
 end
